@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../list/list.h"
+#include "list.h"
 
 #define RECORDER_MAX_BYTE_COUNT 0X100
 
@@ -77,10 +77,10 @@ public:
 		}
 	}
 
-	//����: �ж϶�Ӧ���������Ƿ�����ͬ�Ķ����Ѿ���¼
-	//����: key������,���֧��4�ֽ�,Ϊ��ȷ������ʹ��̫���ڴ�,ע��ѡ��ֵ�Ĵ�С��Χ��ԽСռ���ڴ�ԽС
-	//		other��Ҫ��¼�Ͳ�ѯ�Ƿ���ͬ����¼���ڵĶ��������
-	//����: ���û�в鵽ͬ���ļ�¼,����NULL; ����鵽�˷��ض����ָ��
+	//功能: 判断对应的索引中是否有相同的对象已经记录
+	//参数: key是索引,最大支持4字节,为了确保不会使用太多内存,注意选择值的大小范围，越小占用内存越小
+	//		other是要记录和查询是否有同样记录存在的对象的引用
+	//返回: 如果没有查到同样的记录,返回NULL; 如果查到了返回对象的指针
 	virtual T* find(const CKey key, const T &other)
 	{
 		const unsigned char *k = (const unsigned char *)&key;
